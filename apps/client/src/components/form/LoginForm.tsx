@@ -1,6 +1,6 @@
 const LoginForm = () => {
   return (
-    <form className="flex flex-col gap-5">
+    <form className="flex flex-col gap-5 mb-5">
       <div className="w-4/5 mx-auto">
         <div className="text-left mb-1">Username</div>
         <input
@@ -17,6 +17,10 @@ const LoginForm = () => {
           placeholder="*******"
         />
       </div>
+
+      <button className="border w-4/5 mx-auto py-[6px] rounded bg-indigo-950 text-white">
+        Login
+      </button>
     </form>
   );
 };
