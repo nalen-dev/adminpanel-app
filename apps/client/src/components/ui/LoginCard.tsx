@@ -8,7 +8,7 @@ const LoginCard = () => {
           Admin Login
         </header>
         <div className="text-gray-400">welcome, back!</div>
-        <div className="mt-5">
+        <div className="mt-2">
           <LoginForm />
         </div>
       </div>

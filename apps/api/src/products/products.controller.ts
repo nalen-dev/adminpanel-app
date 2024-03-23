@@ -24,7 +24,8 @@ export class ProductsController {
     try {
       if (page) {
         //todo: create filtering
-        return `show only ${page} products`;
+        const skip = Number(page) * 10;
+        return this.productService.findFilter(skip);
       }
       return this.productService.findAll();
     } catch (error) {

@@ -17,3 +17,13 @@ export const GetAllProducts = async () => {
     console.log(error);
   }
 };
+
+export const GetFilterdProduct = async (page: number) => {
+  try {
+    const response = await fetch(`/api/products?page=${page}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw Error("something went wrong");
+  }
+};

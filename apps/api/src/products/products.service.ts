@@ -19,6 +19,16 @@ export class ProductsService {
     }
   }
 
+  async findFilter(skip: number) {
+    try {
+      return this.prisma.product.findMany({
+        take: 10,
+        skip,
+        orderBy: { cratedAt: 'asc' },
+      });
+    } catch (error) {}
+  }
+
   async createProduct(product: CreateProductDto) {
     try {
       const result = await this.prisma.product.create({
