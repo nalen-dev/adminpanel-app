@@ -1,10 +1,8 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import NavBar from "../components/ui/NavBar";
 import { GetAllProducts, Products } from "../services/products";
 
 const Dashboard = () => {
-  const queryClient = useQueryClient();
-
   const { data } = useQuery<Products[]>({
     queryKey: ["products"],
     queryFn: GetAllProducts,

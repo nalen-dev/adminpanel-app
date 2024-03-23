@@ -3,7 +3,7 @@ import { useState } from "react";
 import { LoginAdmin } from "../../services/users";
 import FormErrorMsg from "../ui/FormErrorMsg";
 import FormSuccessMsg from "../ui/FormSuccessMsg";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface LoginForm {
   username: string;

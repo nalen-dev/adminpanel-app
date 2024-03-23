@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { GetFilterdProduct, Products } from "../../services/products";
 
-const TableProducts = () => {
+interface TableProductsProps {
+  page: number;
+}
+
+const TableProducts = ({ page }: TableProductsProps) => {
   const { data } = useQuery<Products[]>({
-    queryKey: ["products", 1],
-    queryFn: () => GetFilterdProduct(1),
+    queryKey: ["products", page],
+    queryFn: () => GetFilterdProduct(page),
   });
-
-  console.log(data);
-
   return (
-    <table className="w-5/6">
+    <table className="w-5/6 mx-auto">
       <thead>
         <tr className="">
           <th className="border px-4 py-2">Id</th>
@@ -18,6 +19,7 @@ const TableProducts = () => {
           <th className="border px-4 py-2">Category</th>
           <th className="border px-4 py-2">Stock</th>
           <th className="border px-4 py-2">Price</th>
+          <th className="border px-4 py-2">Edit</th>
         </tr>
       </thead>
       <tbody>
@@ -28,12 +30,13 @@ const TableProducts = () => {
               <td className="border px-4 py-2">{item.name}</td>
               <td className="border px-4 py-2">{item.category}</td>
               <td className="border px-4 py-2">{item.stock}</td>
-              <td className="border px-4 py-2 text-center">
+              <td className="border px-4 py-2 text-right">
                 {item.price.toLocaleString("id-ID", {
                   style: "currency",
                   currency: "IDR",
                 })}
               </td>
+              <td className="border px-4 py-2">edit</td>
             </tr>
           ))}
       </tbody>
