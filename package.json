@@ -7,7 +7,8 @@
     "build": "npx turbo run build",
     "push": "cd apps/api && npx prisma db push",
     "seed": "cd apps/api && npm run seed",
-    "start": "node apps/api/dist/src/main"
+    "start": "node apps/api/dist/src/main",
+    "postinstall": "cd apps/api prisma generate"
   },
   "workspaces": [
     "apps/*"
