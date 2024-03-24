@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { GetFilterdProduct, Products } from "../../services/products";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 interface TableProductsProps {
   page: number;
@@ -11,6 +12,8 @@ const TableProducts = ({ page }: TableProductsProps) => {
     queryKey: ["products", page],
     queryFn: () => GetFilterdProduct(page),
   });
+
+  const cookies = Cookies.get("role");
 
   const navigate = useNavigate();
 
@@ -43,7 +46,9 @@ const TableProducts = ({ page }: TableProductsProps) => {
               <td
                 className="border px-4 py-2 hover:text-blue-500 hover:cursor-pointer"
                 onClick={() => {
-                  navigate(`/prodmanage?id=${item.id}`);
+                  if (cookies != "main") {
+                    navigate(`/prodmanage?id=${item.id}`);
+                  }
                 }}
               >
                 edit

@@ -5,6 +5,7 @@ import TableProducts from "../components/ui/TableProducts";
 import PaginationButton from "../components/ui/PaginationButton";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const ProductsPage = () => {
   const { data } = useQuery<Products[]>({
@@ -13,6 +14,7 @@ const ProductsPage = () => {
   });
 
   const navigate = useNavigate();
+  const myCookieValue: string | undefined = Cookies.get("role");
 
   const [pagData, setPagData] = useState<{
     totalPage: number;
@@ -33,14 +35,16 @@ const ProductsPage = () => {
     <div className="h-[95vh] flex-shrink flex gap-5 mx-10 mt-5">
       <NavBar />
       <div className="w-3/4">
-        <button
-          className="bg-green-700 my-4 ml-24 rounded px-3 py-2 hover:bg-green-700/90 text-white text-sm"
-          onClick={() => {
-            navigate("/prodmanage");
-          }}
-        >
-          Add Product
-        </button>
+        {myCookieValue != "main" && (
+          <button
+            className="bg-green-700 my-4 ml-24 rounded px-3 py-2 hover:bg-green-700/90 text-white text-sm"
+            onClick={() => {
+              navigate("/prodmanage");
+            }}
+          >
+            Add Product
+          </button>
+        )}
         <TableProducts page={pagData.pageActive} />
         <PaginationButton
           pageActive={pagData.pageActive}

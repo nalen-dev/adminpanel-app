@@ -2,8 +2,10 @@ import {
   Body,
   Controller,
   ForbiddenException,
+  Get,
   NotFoundException,
   Post,
+  Put,
   Res,
   UsePipes,
   ValidationPipe,
@@ -13,6 +15,7 @@ import * as bcrypt from 'bcryptjs';
 import { UsersService } from './users.service';
 import { UserLoginDto } from './dto/user-login-dto';
 import { Response } from 'express';
+import { UserUpdateDto } from './dto/user-update.dto';
 
 @Controller('users')
 export class UsersController {
@@ -34,5 +37,16 @@ export class UsersController {
 
     response.cookie('role', user.role);
     response.status(200).json({ message: 'login success' });
+  }
+
+  @Get()
+  async getUserData() {
+    return this.userService.findAllUser();
+  }
+
+  @Put()
+  @UsePipes(new ValidationPipe())
+  async updateUserData(@Body() body: UserUpdateDto) {
+    return this.userService.userUpdate(body);
   }
 }
