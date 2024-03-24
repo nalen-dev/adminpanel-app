@@ -5,6 +5,8 @@ import LoginPage from "./pages/LoginPage";
 import ProductsPage from "./pages/ProductsPage";
 import UserManage from "./pages/UserManage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProdManage from "./pages/ProdManage";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +19,7 @@ function App() {
           <Route path="/login" Component={LoginPage} />
           <Route path="/products" Component={ProductsPage} />
           <Route path="/usermanage" Component={UserManage} />
+          <Route path="/prodmanage" Component={ProdManage} />
         </Routes>
       </HashRouter>
     </QueryClientProvider>

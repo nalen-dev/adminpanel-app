@@ -39,6 +39,11 @@ export class ProductsController {
     return this.productService.createProduct(body);
   }
 
+  @Get(':id')
+  getProdctById(@Param('id') id: string) {
+    return this.productService.findProductById({ id: Number(id) });
+  }
+
   @Put(':id')
   @UsePipes(new ValidationPipe())
   updateProdctById(@Param('id') id: string, @Body() body: UpdateProductDto) {

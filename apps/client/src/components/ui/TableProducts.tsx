@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { GetFilterdProduct, Products } from "../../services/products";
+import { useNavigate } from "react-router-dom";
 
 interface TableProductsProps {
   page: number;
@@ -10,6 +11,9 @@ const TableProducts = ({ page }: TableProductsProps) => {
     queryKey: ["products", page],
     queryFn: () => GetFilterdProduct(page),
   });
+
+  const navigate = useNavigate();
+
   return (
     <table className="w-5/6 mx-auto">
       <thead>
@@ -36,7 +40,14 @@ const TableProducts = ({ page }: TableProductsProps) => {
                   currency: "IDR",
                 })}
               </td>
-              <td className="border px-4 py-2">edit</td>
+              <td
+                className="border px-4 py-2 hover:text-blue-500 hover:cursor-pointer"
+                onClick={() => {
+                  navigate(`/prodmanage?id=${item.id}`);
+                }}
+              >
+                edit
+              </td>
             </tr>
           ))}
       </tbody>

@@ -76,4 +76,12 @@ export class ProductsService {
       throw new error(e);
     }
   }
+
+  async findProductById(id: Prisma.ProductWhereUniqueInput) {
+    try {
+      return await this.prisma.product.findFirst({ where: id });
+    } catch (e) {
+      throw new error(e);
+    }
+  }
 }

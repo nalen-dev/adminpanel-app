@@ -19,6 +19,7 @@ const PaginationButton = ({
   for (let index = 0; index < totalPage; index++) {
     pagNumb.push(
       <div
+        key={index + 1}
         className={`w-10 h-10 text-sm leading-9 rounded-md ${pageActive == index + 1 ? "bg-gray-200" : "hover:bg-gray-200 cursor-pointer"}`}
         onClick={() => {
           setPageActive((state) => {
