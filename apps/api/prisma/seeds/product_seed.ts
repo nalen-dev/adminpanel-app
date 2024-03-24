@@ -9,6 +9,8 @@ async function main() {
 
   const products: Product[] = [];
 
+  await prisma.product.deleteMany({});
+
   for (let index = 0; index < totalSeed; index++) {
     const product: Product = {
       id: faker.number.int({ max: 1000 }),
@@ -26,7 +28,7 @@ async function main() {
   try {
     Logger.log('sedding products');
     await prisma.product.createMany({ data: products });
-    Logger.log('sedding user success');
+    Logger.log('sedding products success');
   } catch (error) {
     throw error('sedding error', error);
   }

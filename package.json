@@ -3,9 +3,11 @@
     "turbo": "^1.13.0"
   },
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "start": "node apps/api/dist/main"
+    "dev": "npx turbo run dev",
+    "build": "npx turbo run build",
+    "push": "cd apps/api && npx prisma db push",
+    "seed": "cd apps/api && npm run seed",
+    "start": "node apps/api/dist/src/main"
   },
   "workspaces": [
     "apps/*"
